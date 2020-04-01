@@ -1,0 +1,7 @@
+.header-container {
+    width: 90vw;
+    background-color: brown;
+    height: 10vh;
+    align-content: center;
+    /* display: flex; */
+}
