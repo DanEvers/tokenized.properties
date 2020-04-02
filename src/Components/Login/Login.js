@@ -1,65 +1,55 @@
-import React, { Component } from 'react'
-import "./Login.css"
+import React, { Component } from "react";
+import "./Login.css";
 import axios from "axios";
+import { connect } from "react-redux";
+import { setUser, getSession, loggedIn } from "../../Redux/reducer";
 
 export class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          email: '',
-          password: '',
-          isloggedIn: false,
-          register: false
-        };
-        // this.changeHandler = this.changeHandler.bind(this);
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+      isloggedIn: false,
+      register: false
+    };
+  }
 
-      changeHandler = e => {
-        this.setState({
-          [e.target.name]: e.target.value
-        })
-      }
-    
-      login = async (email, password) => {
-        let body = { email, password };
-        const res = await axios.post("/auth/login", body);
-        if (email && password) {
-        this.props.setUser(res.data);
-        this.props.loggedIn();
-        // console.log(res.data)
-        this.props.history.push('/Profile');
-      } else {
-          alert("Please enter your correct eMail & Password")
-      }
-      };
-    
-      register = async (
-        // username,
-        email,
-        password,
-        firstname,
-        lastname,
-        country,
-      ) => {
-        let newUser = {
-          // username,
-          email,
-          password,
-          firstname,
-          lastname,
-          country
-        };
-        const res = await axios.post("/auth/register", newUser);
-        // .catch(alert('This user already exists'))
-        this.props.setUser(res.data);
-        // this.props.isloggedIn();
-        this.props.history.push("/Profile");
-      };
+  changeHandler = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
-    render() {
-        return (
-            <div className="login-container">
-      {/* <img src={avatar} alt='avatar' className='avatar'/> */}
+  login = async (email, password) => {
+    let body = { email, password };
+    const res = await axios.post("/auth/login", body);
+    if (email && password) {
+      this.props.setUser(res.data);
+      this.props.loggedIn();
+      console.log(res.data);
+      this.props.history.push("/Objects");
+    } else {
+      alert("Please enter your correct eMail & Password");
+    }
+  };
+
+  register = async (email, password, firstname, lastname) => {
+    let newUser = {
+      email,
+      password,
+      firstname,
+      lastname
+    };
+    const res = await axios.post("/auth/register", newUser);
+    this.props.setUser(res.data);
+    this.props.isloggedIn();
+    this.props.history.push("/Objects");
+  };
+
+  render() {
+    return (
+      <div className="login-container">
         {!this.state.register ? (
           <div className="form">
             {/* Login Form */}
@@ -68,7 +58,8 @@ export class Login extends Component {
                 e.preventDefault();
                 this.login(this.state.email, this.state.password);
               }}
-            ><br></br>
+            >
+              <br></br>
               <input
                 placeholder="eMail"
                 onChange={this.changeHandler}
@@ -87,12 +78,9 @@ export class Login extends Component {
               />
               <br></br>
               <br></br>
-              <input id="button" type="submit" value="Login" /><br></br>
-              {/* <input id="button" type="submit" value="Forgot Password" /> */}
+              <input id="button" type="submit" value="Login" />
+              <br></br>
             </form>
-            <br></br>
-            <br></br>
-            <br></br>
             <br></br>
             <br></br>
             <br></br>
@@ -111,16 +99,14 @@ export class Login extends Component {
           <div className="form">
             {/* Register Form */}
             <form
-              onSubmit={(e) => {
-                e.preventDefault()
+              onSubmit={e => {
+                e.preventDefault();
                 this.register(
-                  // this.state.username,
                   this.state.email,
                   this.state.password,
                   this.state.firstname,
-                  this.state.lastname,
-                  this.state.country
-                )
+                  this.state.lastname
+                );
               }}
             >
               <input
@@ -129,7 +115,8 @@ export class Login extends Component {
                 type="text"
                 name="email"
                 value={this.state.email}
-              /> <br></br>
+              />{" "}
+              <br></br>
               <br></br>
               {/* <label>Password:</label> */}
               <input
@@ -138,7 +125,8 @@ export class Login extends Component {
                 type="password"
                 name="password"
                 value={this.state.password}
-              /> <br></br>
+              />{" "}
+              <br></br>
               <br></br>
               <input
                 placeholder="First Name"
@@ -146,7 +134,8 @@ export class Login extends Component {
                 type="text"
                 name="firstname"
                 value={this.state.firstname}
-              /> <br></br>
+              />{" "}
+              <br></br>
               <br></br>
               <input
                 placeholder="Last Name"
@@ -154,23 +143,7 @@ export class Login extends Component {
                 type="text"
                 name="lastname"
                 value={this.state.lastname}
-              /> <br></br>
-              <br></br>
-              <input
-                placeholder="Country"
-                onChange={this.changeHandler}
-                type="text"
-                name="country"
-                value={this.state.country}
-              /> <br></br>
-              <br></br>
-              <br></br>
-              {/* <label>User Role: </label>
-              <select name='user_role' value={this.state.user_role} onChange={this.changeHandler} required>
-                <option>Please choose from the options</option>
-                <option value="skydiver">Skydiver</option>
-                <option value="manifest">DZ Manifest</option>
-              </select> */}
+              />{" "}
               <br></br>
               <br></br>
               <input id="button" type="submit" value="Register" />
@@ -191,8 +164,20 @@ export class Login extends Component {
           </div>
         )}
       </div>
-        )
-    }
+    );
+  }
 }
 
-export default Login
+const mapStateToProps = state => {
+  return {
+    user: state.reducer
+  };
+};
+
+const mapDispatchToProps = {
+  setUser,
+  getSession,
+  loggedIn
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

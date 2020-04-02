@@ -7,15 +7,15 @@ export class Navigation extends Component {
         return (
             <div className="navigation-container">
                 <h1>Navigation Bar</h1>
-                <div>
+                <nav className="navigation-links">
                     <ul>
                         <li><Link to ="/" className="navTitles">Home</Link></li>
                         <li><Link to ="Login" className="navTitles">Login</Link></li>
-                        <li><Link to ="Profile" className="navTitles">Profile</Link> </li>
+                        <li><Link to ="Account" className="navTitles">Account</Link> </li>
                         <li><Link to ="Objects" className="navTitles">Objects</Link></li>
-                        {/* <Link to ="Profile" className="navTitles">Profile</Link> */}
+                        <li><Link to="/" className="navTitles" onClick={() => this.props.loggedOut()}>Logout</Link></li>
                     </ul>
-                </div>
+                </nav>
             </div>
         )
     }

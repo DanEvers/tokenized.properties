@@ -9,11 +9,8 @@ import Header from "./Components/Header/Header";
 import Home from "./Components/Home/Home";
 import Footer from "./Components/Footer/Footer";
 import Login from "./Components/Login/Login";
-// import Account from "./Components/Account/Account";
-// import Dashboard from "./Components/Dashboard/Dashboard";
-// import AboutUs from "./Components/AboutUs/AboutUs";
-// import Subscribe from "./Components/Subscribe/Subscribe";
-// import Contact from "./Components/Contact/Contact";
+import Account from "./Components/Account/Account";
+import Objects from "./Components/Objects/Objects";
 
 function App() {
   return (
@@ -27,12 +24,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/Login" component={Login} />
-        {/* <Route path="/Account" component={Account} /> */}
-        {/* <Route path="/Dashboard" component={Dashboard} /> */}
-        {/* <Route path="/AboutUs" component={AboutUs} /> */}
-        {/* <Route path="/Subscribe" component={Subscribe} /> */}
-        {/* <Route path="/Contact" component={Contact} /> */}
-        {/* <Route path="/Footer" component={Footer} /> */}
+        <Route path="/Account" component={Account} />
+        <Route path="/Objects" component={Objects} />
       </Switch>
       <Footer />
       </div>
