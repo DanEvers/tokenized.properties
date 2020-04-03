@@ -1,31 +1,31 @@
 const Iota = require('@iota/core');
 const Converter = require('@iota/converter');
-const Extract = require('@iota/extract-json')
-​
+const Extract = require('@iota/extract-json');
+
 // Connect to a node
 const iota = Iota.composeAPI({
   provider: 'https://nodes.devnet.thetangle.org:443'
 });
-​
 const depth = 3;
 const minimumWeightMagnitude = 9;
-​
+
 // Define a seed and an address.
 // These do not need to belong to anyone or have IOTA tokens.
 // They must only contain a mamximum of 81 trytes
 // or 90 trytes with a valid checksum
 const address =
   'HEQLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWOR99D';
-const seed =
+
+  const seed =
   'PUEOTSEITFEVEWCWBTSIZM9NKRGJEIMXTULBACGFRQK9IMGICLBKW9TTEVSDQMGWKBXPVCBMMCXWMNPDX';
-​
-// Define a JSON message to send.
+
+  // Define a JSON message to send.
 // This message must include only ASCII characters.
 const message = JSON.stringify({"message": "Hello world"});
-​
+
 // Convert the message to trytes
 const messageInTrytes = Converter.asciiToTrytes(message);
-​
+
 // Define a zero-value transaction object
 // that sends the message to the address
 const transfers = [
@@ -35,7 +35,7 @@ const transfers = [
     message: messageInTrytes
   }
 ];
-​
+
 // Create a bundle from the `transfers` array
 // and send the transaction to the node
 iota
@@ -44,9 +44,9 @@ iota
   .then(bundle => {
     // The message can be read from the Tangle, using the tail transaction hash
     const tailTransactionHash = bundle[0].hash; // NOLIVEQNRHIIRPDPHYTGJOVSGOUXVAACDNAPNTTRFNNCVNJMDZFPURTDNVTAKHPSLSJRYZGQHYBBAE999
-​
+
     console.log(tailTransactionHash);
-​
+
     // Get the tail transaction's bundle from the Tangle
     return iota.getBundle(tailTransactionHash)
       .then(bundle => {
