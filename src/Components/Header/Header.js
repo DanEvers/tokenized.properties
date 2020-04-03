@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import "./Header.css"
 import axios from "axios"
 import { connect } from "react-redux";
+// import { Link } from 'react-router-dom';
 import { getSession, loggedOut } from "../../Redux/reducer";
 
 export class Header extends Component {
@@ -9,8 +10,7 @@ export class Header extends Component {
         super(props);
         this.state = {
           user: '',
-          toggleMenu: false,
-          isLoggedIn: false
+          toggleMenu: false
         };
       }
     
@@ -20,18 +20,18 @@ export class Header extends Component {
         });
       }
     
-      // async componentDidMount() {
-      //   await axios.get('auth/userSession').then(res => {
-      //     this.props.getSession(res.data);
-      //     console.log("res.data", res.data)
-      //     this.setState({
-      //       user: res.data.firstname
-      //     })
+      async componentDidMount() {
+        await axios.get('auth/userSession').then(res => {
+          this.props.getSession(res.data);
+          // console.log("res.data", res.data)
+          this.setState({
+            user: res.data.firstname
+          })
           
-      //   })
+        })
       //   console.log("user",this.state.user)
       //   this.props.getSession();
-      // }
+      }
 
     render() {
         return (

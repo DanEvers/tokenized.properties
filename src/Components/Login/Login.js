@@ -10,6 +10,8 @@ export class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      firstname: "",
+      lastname: "",
       isloggedIn: false,
       register: false
     };
@@ -43,7 +45,7 @@ export class Login extends Component {
     };
     const res = await axios.post("/auth/register", newUser);
     this.props.setUser(res.data);
-    this.props.isloggedIn();
+    // this.props.isloggedIn();
     this.props.history.push("/Objects");
   };
 
@@ -85,7 +87,7 @@ export class Login extends Component {
             <br></br>
             <br></br>
             <br></br>
-            <label>Don't have an account?</label>
+            <label>You don't have an account?</label>
             <br></br>
             <br></br>
             <button

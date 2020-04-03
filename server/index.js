@@ -8,7 +8,6 @@ const session = require("express-session");
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 
 // Authentication
-
 const { login, register, logout, userSession } = require("./controller/authCtrl");
 
 // top-level middleware
