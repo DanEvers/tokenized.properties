@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import "./Navigation.css"
+import { connect } from "react-redux";
+import { loggedOut } from "../../Redux/reducer";
 
 export class Navigation extends Component {
     render() {
@@ -21,4 +23,10 @@ export class Navigation extends Component {
     }
 }
 
-export default Navigation
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = {
+  loggedOut
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

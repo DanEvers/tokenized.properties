@@ -46,6 +46,7 @@ export class Login extends Component {
     const res = await axios.post("/auth/register", newUser);
     this.props.setUser(res.data);
     // this.props.isloggedIn();
+    this.login(this.state.email, this.state.password)
     this.props.history.push("/Objects");
   };
 

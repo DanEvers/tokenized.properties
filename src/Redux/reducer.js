@@ -17,7 +17,7 @@ const initialState = {
   }
   
   export function getSession(user) {
-    console.log(user);
+    // console.log(user);
     return {
       type: GET_SESSION,
       payload: user.data

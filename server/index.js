@@ -9,6 +9,7 @@ const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 
 // Authentication
 const { login, register, logout, userSession } = require("./controller/authCtrl");
+const { getAllObjects, addNewObject, editObject, deleteObject } = require("./controller/objectCtrl");
 
 // top-level middleware
 const app = express();
@@ -40,6 +41,12 @@ app.post("/auth/login", login);
 app.post("/auth/register", register);
 app.get("/auth/logout", logout);
 app.get("/auth/userSession", userSession);
+
+// Objects
+app.get("/api/objects", getAllObjects);
+app.post("/api/objects", addNewObject);
+// app.put("/api/objects/:object_id", editObject);
+app.delete("/api/objects/:object_id", deleteObject);
 
 // run server on our port
 app.listen(SERVER_PORT, () =>
