@@ -2,10 +2,12 @@
     background-color: violet;
     height: 85vh;
     width: 90vw;
+    display: flexbox;
 }
 
 .img-container {
     background-color: violet;
-    height: 85vh;
-    width: 90vw;
+    height: 60vh;
+    width: 60vw;
+    justify-content: flex-start;
 }

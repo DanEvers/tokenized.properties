@@ -1,28 +1,33 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./Objects.css";
+import { connect } from "react-redux";
+import { getSession } from '../../Redux/reducer'
 
 class Objects extends Component {
   constructor() {
     super();
     this.state = {
-      objects: []
+      objects: [],
+    //   user_id: this.props.user.user_id
     };
   }
 
   componentDidMount() {
-    this.getAllObjects();
+    this.getUserObjects();
+    console.log(this.state)
+    console.log(this.props)
   }
 
-  getAllObjects = async () => {
-    const objects = await axios.get("/api/objects");
+  getUserObjects = async () => {
+    const objects = await axios.get(`/api/objects/${this.props.user.user_id}`);
     this.setState({
       objects: objects.data
     });
   };
 
   render() {
-    console.log(this.state.objects);
+    // console.log(this.state.objects);
     const mappedObjects = this.state.objects.map(object => {
       return (
         <div className="objects-container">
@@ -43,7 +48,7 @@ class Objects extends Component {
             <h2><span className="categoryHeader">Price:</span> {object.price}</h2>
             <h2><span className="categoryHeader">Price/Sqft:</span> {object.pricesqft}</h2>
             <h2><span className="categoryHeader">Distribution:</span> {object.distribution}</h2>
-            {/* <h2><span className="categoryHeader">IPT:</span> {object.ipt}</h2> */}
+            <h2><span className="categoryHeader">IPT:</span> {object.ipt}</h2>
           </div>
         </div>
       );
@@ -52,4 +57,10 @@ class Objects extends Component {
   }
 }
 
-export default Objects;
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = {
+  getSession,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Objects);

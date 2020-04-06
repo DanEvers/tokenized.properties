@@ -17,7 +17,7 @@ const initialState = {
   }
   
   export function getSession(user) {
-    // console.log(user);
+    // console.log('redux user.data', user.data);
     return {
       type: GET_SESSION,
       payload: user.data

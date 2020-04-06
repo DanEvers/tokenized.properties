@@ -3,3 +3,10 @@
     height: 85vh;
     width: 90vw;
 }
+
+.img-container {
+    background-color: violet;
+    height: 60vh;
+    width: 60vw;
+    justify-content: flex-start;
+}

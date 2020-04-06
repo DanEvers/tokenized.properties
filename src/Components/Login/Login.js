@@ -12,6 +12,7 @@ export class Login extends Component {
       password: "",
       firstname: "",
       lastname: "",
+      user_id: "",
       isloggedIn: false,
       register: false
     };
@@ -28,14 +29,16 @@ export class Login extends Component {
     const res = await axios.post("/auth/login", body);
     if (email && password) {
       this.props.setUser(res.data);
+      // console.log('res data in login setuser', res.data, res.data.user_id);
+      this.user = res.data 
+      console.log(this.user)
       this.props.loggedIn();
-      console.log(res.data);
       this.props.history.push("/Objects");
     } else {
       alert("Please enter your correct eMail & Password");
     }
   };
-
+  
   register = async (email, password, firstname, lastname) => {
     let newUser = {
       email,
@@ -45,7 +48,7 @@ export class Login extends Component {
     };
     const res = await axios.post("/auth/register", newUser);
     this.props.setUser(res.data);
-    // this.props.isloggedIn();
+    this.props.loggedIn();
     this.login(this.state.email, this.state.password)
     this.props.history.push("/Objects");
   };
