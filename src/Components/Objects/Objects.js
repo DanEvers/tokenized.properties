@@ -1,69 +1,54 @@
 import React, { Component } from "react";
+import axios from "axios";
 import "./Objects.css";
-import { Link } from "react-router-dom";
 
-export class Objects extends Component {
-  constructor(props) {
-    super(props);
-
+class Objects extends Component {
+  constructor() {
+    super();
     this.state = {
-        objects: [],
-        user_id: this.props.user_id
-    //   img: "",
-    //   address: "",
-    //   city: "",
-    //   state:"",
-    //   zip: "",
-    //   description: "",
-    //   yearbuilt: "",
-    //   bedrooms: "",
-    //   bathrooms: "",
-    //   parking: "",
-    //   heating: "",
-    //   cooling: "",
-    //   size: "",
-    //   pricesqft: "",
-    //   price: "",
-    //   distribution: ""
+      objects: []
     };
   }
 
+  componentDidMount() {
+    this.getAllObjects();
+  }
+
+  getAllObjects = async () => {
+    const objects = await axios.get("/api/objects");
+    this.setState({
+      objects: objects.data
+    });
+  };
 
   render() {
-    const { objects } = this.props;
-    return (
-      <div className="objects-container">
-        <h1>Your Properties for listing</h1>
-        <div className="image-container">
-          <img src={objects.img} alt="objects" />
+    console.log(this.state.objects);
+    const mappedObjects = this.state.objects.map(object => {
+      return (
+        <div className="objects-container">
+          <img className="img-container" alt="Object" src={object.img} />
+          <div>
+            <h2><span className="categoryHeader">Address:</span> {object.address}</h2>
+            <h2><span className="categoryHeader">City:</span> {object.city}</h2>
+            <h2><span className="categoryHeader">State:</span> {object.state}</h2>
+            <h2><span className="categoryHeader">Zipcode:</span> {object.zip}</h2>
+            <h2><span className="categoryHeader">Description:</span> {object.descriptiom}</h2>
+            <h2><span className="categoryHeader">Year Built:</span> {object.yearbuilt}</h2>
+            <h2><span className="categoryHeader">Bedrooms:</span> {object.bedrooms}</h2>
+            <h2><span className="categoryHeader">Bathrooms:</span> {object.bathrooms}</h2>
+            <h2><span className="categoryHeader">Parking:</span> {object.parking}</h2>
+            <h2><span className="categoryHeader">Heating:</span> {object.heating}</h2>
+            <h2><span className="categoryHeader">Cooling:</span> {object.cooling}</h2>
+            <h2><span className="categoryHeader">Size:</span> {object.size}</h2>
+            <h2><span className="categoryHeader">Price:</span> {object.price}</h2>
+            <h2><span className="categoryHeader">Price/Sqft:</span> {object.pricesqft}</h2>
+            <h2><span className="categoryHeader">Distribution:</span> {object.distribution}</h2>
+            {/* <h2><span className="categoryHeader">IPT:</span> {object.ipt}</h2> */}
+          </div>
         </div>
-        <div className="text-container">
-          <h4>Address: {objects.address}</h4>
-          <h4>City: {objects.city}</h4>
-          <h4>State: {objects.state}</h4>
-          <h4>Zip: {objects.zip}</h4>
-          <h4>Year Built: {objects.yearbuilt}</h4>
-          <h4>Bedrooms: {objects.bedrooms}</h4>
-          <h4>Bathrooms: {objects.bathrooms}</h4>
-          <h4>Parking: {objects.parking}</h4>
-          <h4>Heating: {objects.heating}</h4>
-          <h4>Cooling: {objects.cooling}</h4>
-          <h4>Size: {objects.size}</h4>
-          <h4>Price: {objects.pricesqft}</h4>
-          <h4>Distribution: {objects.distribution}</h4>
-        </div>
-        <div className="delete-container">
-          <button onClick={() => this.props.deleteobjects(objects.id)}>
-            Delete
-          </button>
-
-        <Link to="/steps/step1">
-          <button className="dash_subheader_button">Add New Property</button>
-        </Link>
-
-        </div>
-      </div>
-    );
+      );
+    });
+    return <div>{mappedObjects}</div>;
   }
 }
 
