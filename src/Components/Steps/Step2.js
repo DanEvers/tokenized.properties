@@ -26,6 +26,7 @@ export default class Step2 extends Component {
         <h5>Image:</h5>
         <input
           value={this.state.img}
+          name='img'
           onChange={e => this.handleChange(e, "img")}
         />
         <p>

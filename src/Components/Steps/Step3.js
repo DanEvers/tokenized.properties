@@ -29,11 +29,13 @@ export class Step3 extends Component {
         <h5>Price:</h5>
         <input
           value={this.state.price}
+          name='price'
           onChange={e => this.handleChange(e, "price")}
         />
         <h5>Distribution:</h5>
         <input
           value={this.state.distribution}
+          name='distribution'
           onChange={e => this.handleChange(e, "distribution")}
         />
         <p>

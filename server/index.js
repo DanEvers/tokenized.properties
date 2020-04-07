@@ -45,7 +45,7 @@ app.get("/auth/userSession", userSession);
 // Objects
 app.get("/api/objects", getAllObjects);
 app.get("/api/objects/:user_id", getUserObjects);
-app.post("/api/objects", addNewObject);
+app.post("/api/objects/user_id", addNewObject);
 // app.put("/api/objects/:object_id", editObject);
 app.delete("/api/objects/:object_id", deleteObject);
 

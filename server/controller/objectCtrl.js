@@ -18,10 +18,14 @@ module.exports = {
   },
   addNewObject: async (req, res) => {
     const db = req.app.get("db");
-    const { img, address, city, state, zip, description, yearbuilt, bedrooms, bathrooms, parking, heating, cooling, size, pricesqft, price, distribution, ipt } = req.body;
-    const objects = await db.addNewObject([ img, address, city, state, zip, description, yearbuilt, bedrooms, bathrooms, parking, heating, cooling, size, pricesqft, price, distribution, ipt ]);
-    res.status(200).send(objects);
-  },
+    let {user_id} = req.params
+
+    const { img, address, city, state, zip, description, yearbuilt, bedrooms, bathrooms, parking, heating, cooling, size, pricesqft, price, distribution } = req.body;
+    let ipt = price / distribution
+    await db.add_NewObject(img, address, city, state, zip, description, yearbuilt, bedrooms, bathrooms, parking, heating, cooling, size, pricesqft, price, distribution, ipt, user_id).then(object => {
+      res.status(200).send(object)
+  })
+},
   // editObject:
 
   deleteObject: async (req, res) => {
