@@ -40,6 +40,7 @@ const initialState = {
   //   const { type, payload } = action;
 
   export function setUser(user) {
+    // console.log('redux user:', user.data);
     return {
       type: SET_USER,
       payload: user
@@ -47,7 +48,7 @@ const initialState = {
   }
   
   export function getSession(user) {
-    // console.log('redux user.data', user.data);
+    console.log('redux user.data:', user.data);
     return {
       type: GET_SESSION,
       payload: user.data
@@ -69,9 +70,9 @@ const initialState = {
   }
   
   export default function userReducer(state = initialState, action) {
-    const {type, payload } = action;
+ 
     
-    switch (type, payload) {
+    switch (action.type) {
       case SET_USER:
         return { ...state, user: action.payload };
       case GET_SESSION + "_PENDING":
@@ -88,62 +89,62 @@ const initialState = {
       case UPDATE_ADDRESS:
       return {
         ...state,
-        address: payload
+        address: action.payload
       };
       case UPDATE_CITY:
       return {
         ...state,
-        city: payload
+        city: action.payload
       };
       case UPDATE_STATE:
       return {
         ...state,
-        state: payload
+        state: action.payload
       };
       case UPDATE_ZIP:
       return {
         ...state,
-        zip: payload
+        zip: action.payload
       };
       case UPDATE_DESCRIPTION:
       return {
         ...state,
-        description: payload
+        description: action.payload
       };
       case UPDATE_YEARBUILT:
       return {
         ...state,
-        yearbuilt: payload
+        yearbuilt: action.payload
       };
       case UPDATE_BEDROOMS:
       return {
         ...state,
-        bedrooms: payload
+        bedrooms: action.payload
       };
       case UPDATE_BATHROOMS:
       return {
         ...state,
-        bathrooms: payload
+        bathrooms: action.payload
       };
       case UPDATE_PARKING:
       return {
         ...state,
-        parking: payload
+        parking: action.payload
       };
       case UPDATE_HEATING:
       return {
         ...state,
-        heating: payload
+        heating: action.payload
       };
       case UPDATE_COOLING:
       return {
         ...state,
-        cooling: payload
+        cooling: action.payload
       };
       case UPDATE_SIZE:
       return {
         ...state,
-        size: payload
+        size: action.payload
       };
       default:
         return state;

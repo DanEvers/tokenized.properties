@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 // import '../../App.css'
 import "./Steps.css";
-import axios from "axios";
+// import axios from "axios";
 import store, {
   UPDATE_ADDRESS,
   UPDATE_CITY,
@@ -21,8 +21,7 @@ import store, {
 export default class Step1 extends Component {
   constructor(props) {
     super(props);
-    // const reduxState = store.getState();
-
+    
     const reduxState = store.getState();
 
     this.state = {
@@ -38,7 +37,7 @@ export default class Step1 extends Component {
       heating: reduxState.heating,
       cooling: reduxState.cooling,
       size: reduxState.size,
-      user_id: this.props.user_id
+      user_id: this.props.user.user_id
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -58,7 +57,7 @@ export default class Step1 extends Component {
         parking: newState.parking,
         heating: newState.heating,
         cooling: newState.cooling,
-        size: newState.size,
+        size: newState.size
       });
     });
   }

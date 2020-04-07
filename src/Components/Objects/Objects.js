@@ -6,18 +6,18 @@ import { getSession } from '../../Redux/reducer'
 import { Link } from "react-router-dom";
 
 class Objects extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       objects: [],
-    //   user_id: this.props.user.user_id
+      user_id: this.props.user.user_id
     };
   }
 
   componentDidMount() {
     this.getUserObjects();
-    console.log('component did mount', this.state)
-    // console.log(this.props)
+    // console.log('component did mount', this.props.user.user_id)
+    console.log('props:', this.props)
     }
 
 getUserObjects = async () => {
@@ -25,7 +25,7 @@ getUserObjects = async () => {
     this.setState({
         objects: objects.data
     });
-    console.log('axios call', this.state)
+    console.log('axios call objects data:', objects.data)
   };
 
   render() {
