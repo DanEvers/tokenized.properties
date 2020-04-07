@@ -37,17 +37,17 @@ massive(CONNECTION_STRING)
 
 // endpoints
 // AUTH
-app.post("/auth/login", login);
-app.post("/auth/register", register);
-app.get("/auth/logout", logout);
-app.get("/auth/userSession", userSession);
+app.post('/auth/login', login);
+app.post('/auth/register', register);
+app.get('/auth/logout', logout);
+app.get('/auth/userSession', userSession);
 
-// Objects
-app.get("/api/objects", getAllObjects);
-app.get("/api/objects/:user_id", getUserObjects);
-app.post("/api/objects/user_id", addNewObject);
-// app.put("/api/objects/:object_id", editObject);
-app.delete("/api/objects/:object_id", deleteObject);
+// OBJECTS
+app.get('/api/Objects', getAllObjects);
+app.get('/api/UserObjects/:user_id', getUserObjects);
+app.post('/api/addNewObject/:object_id', addNewObject);
+// app.put('/api/editObject/:object_id', editObject);
+app.delete('/api/deleteObject/:object_id', deleteObject);
 
 // run server on our port
 app.listen(SERVER_PORT, () =>

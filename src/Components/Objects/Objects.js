@@ -21,7 +21,7 @@ class Objects extends Component {
     }
 
 getUserObjects = async () => {
-    const objects = await axios.get(`/api/objects/${this.props.user.user_id}`);
+    const objects = await axios.get(`/api/UserObjects/${this.props.user.user_id}`);
     this.setState({
         objects: objects.data
     });

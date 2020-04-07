@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import '../../App.css'
 // import store from '../../store'
 import './Steps.css'
+import axios from 'axios'
 
 export default class Step2 extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       img: ""
@@ -18,6 +19,13 @@ export default class Step2 extends Component {
     this.setState({ [name]: value });
     console.log(this.state);
   }
+
+editObject = async () => {
+  const { img } = this.state;
+  let object_id = this.state.object[0].object_id;
+  let updatedObject = { img };
+  axios.put(`/api/editObject/${object_id}`, updatedObject)
+}
 
   render() {
     return (
@@ -31,7 +39,7 @@ export default class Step2 extends Component {
         />
         <p>
           <Link to="/Step3">
-            <button className="dash_subheader_button">Next Step</button>
+            <button  onClick={this.editObject} className="dash_subheader_button">Next Step</button>
           </Link>
         </p>
         <p>
