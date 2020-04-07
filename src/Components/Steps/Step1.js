@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import '../../App.css'
-import store from '../../store'
+// import '../../App.css'
+import './Steps.css'
+// import store from '../../store'
 
 export default class Step1 extends Component {
   constructor() {
@@ -25,8 +26,8 @@ export default class Step1 extends Component {
 
   render() {
     return (
-      <div>
-        Step 1
+      <div className='container'>
+        Step 1 - Property Data
         <h5>Adress:</h5>
         <input
           value={this.state.address}
@@ -87,24 +88,10 @@ export default class Step1 extends Component {
           value={this.state.size}
           onChange={e => this.handleChange(e, "size")}
         />
-        <h5>pricesqft:</h5>
-        <input
-          value={this.state.pricesqft}
-          onChange={e => this.handleChange(e, "pricesqft")}
-        />
-        <h5>Price:</h5>
-        <input
-          value={this.state.price}
-          onChange={e => this.handleChange(e, "price")}
-        />
-        <h5>Distribution:</h5>
-        <input
-          value={this.state.distribution}
-          onChange={e => this.handleChange(e, "distribution")}
-        />
+        
         
         <p>
-          <Link to="/Steps/Step2">
+          <Link to="/Step2">
             <button className="dash_subheader_button">Next Step</button>
           </Link>
         </p>

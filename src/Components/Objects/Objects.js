@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Objects.css";
 import { connect } from "react-redux";
 import { getSession } from '../../Redux/reducer'
+import { Link } from "react-router-dom";
 
 class Objects extends Component {
   constructor() {
@@ -15,22 +16,23 @@ class Objects extends Component {
 
   componentDidMount() {
     this.getUserObjects();
-    console.log(this.state)
-    console.log(this.props)
-  }
+    console.log('component did mount', this.state)
+    // console.log(this.props)
+    }
 
-  getUserObjects = async () => {
+getUserObjects = async () => {
     const objects = await axios.get(`/api/objects/${this.props.user.user_id}`);
     this.setState({
-      objects: objects.data
+        objects: objects.data
     });
+    console.log('axios call', this.state)
   };
 
   render() {
     // console.log(this.state.objects);
     const mappedObjects = this.state.objects.map(object => {
       return (
-        <div className="objects-container">
+          <div className="objects-container">
           <img className="img-container" alt="Object" src={object.img} />
           <div>
             <h2><span className="categoryHeader">Address:</span> {object.address}</h2>
@@ -53,7 +55,10 @@ class Objects extends Component {
         </div>
       );
     });
-    return <div>{mappedObjects}</div>;
+    return <div>
+    {mappedObjects}
+    <div><Link to ='/Step1' className='button'><button>Add Property</button></Link></div>
+    </div>;
   }
 }
 
