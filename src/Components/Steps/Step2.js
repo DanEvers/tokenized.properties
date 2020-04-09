@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import '../../App.css'
-// import store from '../../store'
 import './Steps.css'
-import axios from 'axios'
+// import axios from 'axios'
+import store, { STEP2 } from '../../Redux/reducer'
+import {connect} from 'react-redux'
 
 export default class Step2 extends Component {
   constructor(props) {
     super(props);
-
+    const reduxState = store.getState();
     this.state = {
-      img: ""
+      img: reduxState.img
     };
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e, name) {
@@ -20,11 +22,30 @@ export default class Step2 extends Component {
     console.log(this.state);
   }
 
-editObject = async () => {
+// editObject = async () => {
+//   const { img } = this.state;
+//   let object_id = this.state.object[0].object_id;
+//   let updatedObject = { img };
+//   axios.put(`/api/editObject/${object_id}`, updatedObject)
+// }
+
+nextAndUpdate = () => {
   const { img } = this.state;
-  let object_id = this.state.object[0].object_id;
-  let updatedObject = { img };
-  axios.put(`/api/editObject/${object_id}`, updatedObject)
+  store.dispatch({
+    type: STEP2,
+    payload: {
+      img
+    }
+  });
+};
+
+componentDidMount() {
+  const reduxState = store.getState();
+  store.subscribe(() => {
+    this.setState({
+      img: reduxState.img
+    });
+  });
 }
 
   render() {
@@ -39,12 +60,12 @@ editObject = async () => {
         />
         <p>
           <Link to="/Step3">
-            <button  onClick={this.editObject} className="dash_subheader_button">Next Step</button>
+            <button  onClick={this.nextAndUpdate} className="dash_subheader_button">Next Step</button>
           </Link>
         </p>
         <p>
           <Link to="/Step1">
-            <button className="dash_subheader_button">Back</button>
+            <button onclick={this.nextAndUpdate} className="dash_subheader_button">Back</button>
           </Link>
         </p>
         <p>
@@ -56,3 +77,11 @@ editObject = async () => {
     );
   }
 }
+
+const mapStatetoProps = (state) => state;
+
+const mapDispatchtoProps = {
+  STEP2
+};
+
+connect(mapStatetoProps, mapDispatchtoProps)(Step2);

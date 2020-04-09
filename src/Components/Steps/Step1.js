@@ -3,26 +3,27 @@ import { Link } from "react-router-dom";
 // import '../../App.css'
 import "./Steps.css";
 // import axios from "axios";
-import store, {
-  UPDATE_ADDRESS,
-  UPDATE_CITY,
-  UPDATE_STATE,
-  UPDATE_ZIP,
-  UPDATE_DESCRIPTION,
-  UPDATE_YEARBUILT,
-  UPDATE_BEDROOMS,
-  UPDATE_BATHROOMS,
-  UPDATE_PARKING,
-  UPDATE_HEATING,
-  UPDATE_COOLING,
-  UPDATE_SIZE
+import store, { STEP1
+  // UPDATE_ADDRESS,
+  // UPDATE_CITY,
+  // UPDATE_STATE,
+  // UPDATE_ZIP,
+  // UPDATE_DESCRIPTION,
+  // UPDATE_YEARBUILT,
+  // UPDATE_BEDROOMS,
+  // UPDATE_BATHROOMS,
+  // UPDATE_PARKING,
+  // UPDATE_HEATING,
+  // UPDATE_COOLING,
+  // UPDATE_SIZE
 } from "../../Redux/reducer";
+import {connect} from 'react-redux'
 
-export default class Step1 extends Component {
+class Step1 extends Component {
   constructor(props) {
     super(props);
-    
-    const reduxState = store.getState();
+
+    const reduxState = store.getState()
 
     this.state = {
       address: reduxState.address,
@@ -44,20 +45,20 @@ export default class Step1 extends Component {
 
   componentDidMount() {
     store.subscribe(() => {
-      let newState = store.getState();
+      let reduxState = store.getState();
       this.setState({
-        address: newState.address,
-        city: newState.city,
-        state: newState.state,
-        zip: newState.zip,
-        description: newState.description,
-        yearbuilt: newState.yearbuilt,
-        bedrooms: newState.bedrooms,
-        bathrooms: newState.bathrooms,
-        parking: newState.parking,
-        heating: newState.heating,
-        cooling: newState.cooling,
-        size: newState.size
+        address: reduxState.address,
+        city: reduxState.city,
+        state: reduxState.state,
+        zip: reduxState.zip,
+        description: reduxState.description,
+        yearbuilt: reduxState.yearbuilt,
+        bedrooms: reduxState.bedrooms,
+        bathrooms: reduxState.bathrooms,
+        parking: reduxState.parking,
+        heating: reduxState.heating,
+        cooling: reduxState.cooling,
+        size: reduxState.size
       });
     });
   }
@@ -70,67 +71,92 @@ export default class Step1 extends Component {
   }
 
   nextAndUpdate = () => {
-     const addressAction = {
-      type: UPDATE_ADDRESS,
-      payload: this.state.address
-    };
-    const cityAction = {
-      type: UPDATE_CITY,
-      payload: this.state.city
-    };
-    const stateAction = {
-      type: UPDATE_STATE,
-      payload: this.state.state
-    };
-    const zipAction = {
-      type: UPDATE_ZIP,
-      payload: this.state.zip
-    };
-    const descriptionAction = {
-      type: UPDATE_DESCRIPTION,
-      payload: this.state.description
-    };
-    const yearbuiltAction = {
-      type: UPDATE_YEARBUILT,
-      payload: this.state.yearbuilt
-    };
-    const bedroomsAction = {
-      type: UPDATE_BEDROOMS,
-      payload: this.state.bedrooms
-    };
-    const bathroomsAction = {
-      type: UPDATE_BATHROOMS,
-      payload: this.state.bathrooms
-    };
-    const parkingAction = {
-      type: UPDATE_PARKING,
-      payload: this.state.parking
-    };
-    const heatingAction = {
-      type: UPDATE_HEATING,
-      payload: this.state.heating
-    };
-    const coolingAction = {
-      type: UPDATE_COOLING,
-      payload: this.state.cooling
-    };
-    const sizeAction = {
-      type: UPDATE_SIZE,
-      payload: this.state.size
-    };
-    store.dispatch(addressAction);
-    store.dispatch(cityAction);
-    store.dispatch(stateAction);
-    store.dispatch(zipAction);
-    store.dispatch(descriptionAction);
-    store.dispatch(yearbuiltAction);
-    store.dispatch(bedroomsAction);
-    store.dispatch(bathroomsAction);
-    store.dispatch(parkingAction);
-    store.dispatch(heatingAction);
-    store.dispatch(coolingAction);
-    store.dispatch(sizeAction);
+    const { address, city, state, zip, description, yearbuilt, bedrooms, bathrooms, parking, heating, cooling, size } = this.state;
+    store.dispatch({
+      type: STEP1,
+      payload: {
+        address, 
+        city,
+        state, 
+        zip,
+        description,
+        yearbuilt,
+        bedrooms,
+        bathrooms, 
+        parking, 
+        heating, 
+        cooling, 
+        size
+      }
+    });
   };
+
+
+  // nextAndUpdate = () => {
+  //   const { address, city, state, zip } = this.state;
+  //   store.dispatch({
+  //     type: STEPONE,
+  //    const addressAction = {
+  //     type: UPDATE_ADDRESS,
+  //     payload: this.state.address
+  //   };
+  //   const cityAction = {
+  //     type: UPDATE_CITY,
+  //     payload: this.state.city
+  //   };
+  //   const stateAction = {
+  //     type: UPDATE_STATE,
+  //     payload: this.state.state
+  //   };
+  //   const zipAction = {
+  //     type: UPDATE_ZIP,
+  //     payload: this.state.zip
+  //   };
+  //   const descriptionAction = {
+  //     type: UPDATE_DESCRIPTION,
+  //     payload: this.state.description
+  //   };
+  //   const yearbuiltAction = {
+  //     type: UPDATE_YEARBUILT,
+  //     payload: this.state.yearbuilt
+  //   };
+  //   const bedroomsAction = {
+  //     type: UPDATE_BEDROOMS,
+  //     payload: this.state.bedrooms
+  //   };
+  //   const bathroomsAction = {
+  //     type: UPDATE_BATHROOMS,
+  //     payload: this.state.bathrooms
+  //   };
+  //   const parkingAction = {
+  //     type: UPDATE_PARKING,
+  //     payload: this.state.parking
+  //   };
+  //   const heatingAction = {
+  //     type: UPDATE_HEATING,
+  //     payload: this.state.heating
+  //   };
+  //   const coolingAction = {
+  //     type: UPDATE_COOLING,
+  //     payload: this.state.cooling
+  //   };
+  //   const sizeAction = {
+  //     type: UPDATE_SIZE,
+  //     payload: this.state.size
+  //   };
+  //   store.dispatch(addressAction);
+  //   store.dispatch(cityAction);
+  //   store.dispatch(stateAction);
+  //   store.dispatch(zipAction);
+  //   store.dispatch(descriptionAction);
+  //   store.dispatch(yearbuiltAction);
+  //   store.dispatch(bedroomsAction);
+  //   store.dispatch(bathroomsAction);
+  //   store.dispatch(parkingAction);
+  //   store.dispatch(heatingAction);
+  //   store.dispatch(coolingAction);
+  //   store.dispatch(sizeAction);
+  // };
 
 
 // axios post
@@ -262,3 +288,11 @@ export default class Step1 extends Component {
     );
   }
 }
+
+const mapStatetoProps = (state) => state;
+
+const mapDispatchtoProps = {
+  STEP1
+};
+
+export default connect(mapStatetoProps, mapDispatchtoProps)(Step1);

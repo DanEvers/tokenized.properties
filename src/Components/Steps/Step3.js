@@ -1,20 +1,46 @@
 import React, { Component } from "react";
 import {Link} from 'react-router-dom'
 import './Steps.css'
+import store, { STEP3 } from '../../Redux/reducer'
+import {connect} from 'react-redux'
 
-export class Step3 extends Component {
-  constructor() {
-    super();
+export default class Step3 extends Component {
+  constructor(props) {
+    super(props);
+    const reduxState = store.getState();
 
     this.state = {
-
+      price: reduxState.price,
+      distribution: reduxState.distribution
     };
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e, name) {
     const value = e.target.value;
     this.setState({ [name]: value });
     console.log(this.state);
+  }
+
+  nextandUpdate = () => {
+    const {price, distribution} = this.state;
+    store.dispatch({
+      type: STEP3,
+      payload: {
+        price,
+        distribution
+      }
+    })
+  }
+
+  componentDidMount() {
+    const reduxState = store.getState();
+    store.subscribe(() =>{
+      this.setState({
+        price: reduxState.price,
+        distribution: reduxState.distribution
+    })
+    })
   }
 
   render() {
@@ -40,12 +66,12 @@ export class Step3 extends Component {
         />
         <p>
           <Link to="/Step4">
-            <button className="dash_subheader_button">Summary</button>
+            <button onclick={this.nextandUpdate} className="dash_subheader_button">Summary</button>
           </Link>
         </p>
         <p>
           <Link to="/Step2">
-            <button className="dash_subheader_button">Back</button>
+            <button onclick={this.nextandUpdate} className="dash_subheader_button">Back</button>
           </Link>
         </p>
         <p>
@@ -58,4 +84,10 @@ export class Step3 extends Component {
   }
 }
 
-export default Step3;
+const mapStatetoProps = (state) => state;
+
+const mapDispatchtoProps = {
+  STEP3
+};
+
+connect(mapStatetoProps, mapDispatchtoProps)(Step3);

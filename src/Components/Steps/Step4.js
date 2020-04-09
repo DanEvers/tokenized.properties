@@ -6,7 +6,9 @@ export class Step4 extends Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      
+    };
   }
 
   handleChange(e, name) {
@@ -15,13 +17,17 @@ export class Step4 extends Component {
     console.log(this.state);
   }
 
+  uploadDB_Tangle = () => {
+
+  }
+
   render() {
     return (
       <div className="summary-container">
         Summary
         <p>
           <Link to="/Step3"><button>Back</button></Link>
-          <button className="dash_subheader_button">
+          <button onclick={this.uploadDB_Tangle} className="dash_subheader_button">
             Upload into the IOTA Tangle
           </button> 
         </p>
