@@ -31,6 +31,10 @@ class Step2 extends Component {
   //   axios.put(`/api/editObject/${object_id}`, updatedObject)
   // }
 
+  nextStep = () => {
+    window.location = "/Step3";
+  };
+
   dispatchState = () => {
     const { img } = this.state;
     store.dispatch({
@@ -39,7 +43,7 @@ class Step2 extends Component {
         img
       }
     });
-    this.props.history.push("/Step3");
+    // this.props.history.push("/Step3");
   };
 
   componentDidMount() {
@@ -57,6 +61,7 @@ class Step2 extends Component {
   render() {
     return (
       <div className="container">
+      <form onSubmit={this.nextStep}>
         Step 2 - Image Upload
         <h5>Image:</h5>
         <input
@@ -65,14 +70,14 @@ class Step2 extends Component {
           onChange={e => this.handleChange(e, "img")}
         />
         <p>
-          {/* <Link to="/Step3"> */}
+          <Link to="/Step3" onclick={this.dispatchState}>
           <button
-            onClick={this.dispatchState}
+            // onClick={this.dispatchState}
             className="dash_subheader_button"
           >
             Next Step
           </button>
-          {/* </Link> */}
+          </Link>
         </p>
         <p>
           {/* <Link to="/Step1"> */}
@@ -89,6 +94,7 @@ class Step2 extends Component {
             <button className="dash_subheader_button_cancel">Cancel</button>
           </Link>
         </p>
+        </form>
       </div>
     );
   }

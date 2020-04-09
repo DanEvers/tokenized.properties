@@ -37,6 +37,10 @@ class Step1 extends Component {
     });
   }
 
+  nextStep = () => {
+    window.location = "/Step2";
+  };
+
   dispatchState = () => {
     const {
       address,
@@ -69,7 +73,7 @@ class Step1 extends Component {
         size
       }
     });
-    this.props.history.push("/Step2");
+    // this.props.history.push("/Step2");
   };
 
   componentDidMount() {
@@ -132,6 +136,7 @@ class Step1 extends Component {
   render() {
     return (
       <div className="container">
+      <form onSubmit={this.nextStep}>
         Step 1 - Property Information
         <h5>Address:</h5>
         <input
@@ -202,20 +207,21 @@ class Step1 extends Component {
           onChange={this.handleChange}
         />
         <p>
-          {/* <Link to="/Step2"> */}
+          <Link to="/Step2" onclick={this.dispatchState}>
           <button
-            onClick={this.dispatchState}
+            // onClick={this.dispatchState}
             className="dash_subheader_button"
           >
             Next Step
           </button>
-          {/* </Link> */}
+          </Link>
         </p>
         <p>
           <Link to="/Objects">
             <button className="dash_subheader_button_cancel">Cancel</button>
           </Link>
         </p>
+        </form>
       </div>
     );
   }

@@ -23,6 +23,10 @@ class Step3 extends Component {
     // console.log(this.state);
   }
 
+  nextStep = () => {
+    window.location = "/Step4";
+  };
+
   dispatchState = () => {
     const { price, distribution } = this.state;
     store.dispatch({
@@ -32,7 +36,7 @@ class Step3 extends Component {
         distribution
       }
     });
-    this.props.history.push('/Step4')
+    this.props.history.push("/Step4");
   };
 
   componentDidMount() {
@@ -42,58 +46,55 @@ class Step3 extends Component {
         price: reduxState.price,
         distribution: reduxState.distribution
       });
-      console.log('componentdidmtnt state', this.state)
-      console.log('componentdidmtnt props', this.props)
-      console.log('componentdidmtnt reduxState', reduxState)
+      console.log("componentdidmtnt state", this.state);
+      console.log("componentdidmtnt props", this.props);
+      console.log("componentdidmtnt reduxState", reduxState);
     });
   }
 
   render() {
     return (
       <div className="container">
-        Step 3 - Value Distribution
-        {/* <h5>pricesqft:</h5>
+        <form onSubmit={this.nextStep}>
+          Step 3 - Value Distribution
+          {/* <h5>pricesqft:</h5>
         <input
           value={this.state.pricesqft}
           onChange={e => this.handleChange(e, "pricesqft")}
         /> */}
-        <h5>Price:</h5>
-        <input
-          value={this.state.price}
-          name="price"
-          onChange={e => this.handleChange(e, "price")}
-        />
-        <h5>Distribution:</h5>
-        <input
-          value={this.state.distribution}
-          name="distribution"
-          onChange={e => this.handleChange(e, "distribution")}
-        />
-        <p>
-          {/* <Link to="/Step4"> */}
+          <h5>Price:</h5>
+          <input
+            value={this.state.price}
+            name="price"
+            onChange={e => this.handleChange(e, "price")}
+          />
+          <h5>Distribution:</h5>
+          <input
+            value={this.state.distribution}
+            name="distribution"
+            onChange={e => this.handleChange(e, "distribution")}
+          />
+          <p>
+            <Link to="/Step4" onclick={this.dispatchState}>
+              <button className="dash_subheader_button">Summary</button>
+            </Link>
+          </p>
+          <p>
+            {/* <Link to="/Step2"> */}
             <button
-              onclick={this.dispatchState}
+              onclick={this.props.history.push("/Step2")}
               className="dash_subheader_button"
             >
-              Summary
+              Back
             </button>
-          {/* </Link> */}
-        </p>
-        <p>
-          {/* <Link to="/Step2"> */}
-          <button
-            onclick={this.props.history.push('/Step2')}
-            className="dash_subheader_button"
-          >
-            Back
-          </button>
-          {/* </Link> */}
-        </p>
-        <p>
-          <Link to="/Objects">
-            <button className="dash_subheader_button_cancel">Cancel</button>
-          </Link>
-        </p>
+            {/* </Link> */}
+          </p>
+          <p>
+            <Link to="/Objects">
+              <button className="dash_subheader_button_cancel">Cancel</button>
+            </Link>
+          </p>
+        </form>
       </div>
     );
   }
