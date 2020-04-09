@@ -22,6 +22,7 @@ const address =
   // Define a JSON message to send.
 // This message must include only ASCII characters.
 const message = JSON.stringify({"message": "Hello world"});
+// const message = JSON.stringify(this.props.object);
 
 // Convert the message to trytes
 const messageInTrytes = Converter.asciiToTrytes(message);

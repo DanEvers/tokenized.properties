@@ -78,26 +78,27 @@ export function loggedOut() {
   };
 }
 
-export function step1() {
-  return {
-    type: STEP1,
-    payload: {}
-  };
-}
+// removed because of dispatch in Step1.js
+// export function step1() {
+//   return {
+//     type: STEP1,
+//     payload: {}
+//   };
+// }
 
-export function step2() {
-  return {
-    type: STEP2,
-    payload: {}
-  };
-}
+// export function step2() {
+//   return {
+//     type: STEP2,
+//     payload: {}
+//   };
+// }
 
-export function step3() {
-  return {
-    type: STEP3,
-    payload: {}
-  };
-}
+// export function step3() {
+//   return {
+//     type: STEP3,
+//     payload: {}
+//   };
+// }
 
 export default function reducer(state = initialState, action) {
   const { type, payload } = action 
@@ -142,66 +143,6 @@ export default function reducer(state = initialState, action) {
         price: payload.pricesqft,
         distribution: payload.distribution
       };
-    // case UPDATE_ADDRESS:
-    //   return {
-    //     ...state,
-    //     address: action.payload
-    //   };
-    // case UPDATE_CITY:
-    //   return {
-    //     ...state,
-    //     city: action.payload
-    //   };
-    // case UPDATE_STATE:
-    //   return {
-    //     ...state,
-    //     state: action.payload
-    //   };
-    // case UPDATE_ZIP:
-    //   return {
-    //     ...state,
-    //     zip: action.payload
-    //   };
-    // case UPDATE_DESCRIPTION:
-    //   return {
-    //     ...state,
-    //     description: action.payload
-    //   };
-    // case UPDATE_YEARBUILT:
-    //   return {
-    //     ...state,
-    //     yearbuilt: action.payload
-    //   };
-    // case UPDATE_BEDROOMS:
-    //   return {
-    //     ...state,
-    //     bedrooms: action.payload
-    //   };
-    // case UPDATE_BATHROOMS:
-    //   return {
-    //     ...state,
-    //     bathrooms: action.payload
-    //   };
-    // case UPDATE_PARKING:
-    //   return {
-    //     ...state,
-    //     parking: action.payload
-    //   };
-    // case UPDATE_HEATING:
-    //   return {
-    //     ...state,
-    //     heating: action.payload
-    //   };
-    // case UPDATE_COOLING:
-    //   return {
-    //     ...state,
-    //     cooling: action.payload
-    //   };
-    // case UPDATE_SIZE:
-    //   return {
-    //     ...state,
-    //     size: action.payload
-    //   };
     default:
       return state;
   }
