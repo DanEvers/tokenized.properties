@@ -73,7 +73,7 @@ class Step1 extends Component {
         size
       }
     });
-    // this.props.history.push("/Step2");
+    this.props.history.push("/Step2");
   };
 
   componentDidMount() {
@@ -157,7 +157,10 @@ class Step1 extends Component {
           onChange={this.handleChange}
         />
         <h5>Zipcode:</h5>
-        <input value={this.state.zip} name="zip" onChange={this.handleChange} />
+        <input 
+        value={this.state.zip} 
+        name="zip" 
+        onChange={this.handleChange} />
         <h5>Description:</h5>
         <input
           value={this.state.description}
@@ -207,14 +210,14 @@ class Step1 extends Component {
           onChange={this.handleChange}
         />
         <p>
-          <Link to="/Step2" onclick={this.dispatchState}>
+          {/* <Link to="/Step2"> */}
           <button
-            // onClick={this.dispatchState}
+            onClick={this.dispatchState}
             className="dash_subheader_button"
           >
             Next Step
           </button>
-          </Link>
+          {/* </Link> */}
         </p>
         <p>
           <Link to="/Objects">
