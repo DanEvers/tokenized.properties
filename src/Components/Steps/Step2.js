@@ -5,7 +5,7 @@ import "./Steps.css";
 // import axios from 'axios'
 import store from "../../Redux/store";
 import { STEP2 } from "../../Redux/reducer";
-// import {connect} from 'react-redux'
+import {connect} from 'react-redux'
 
 class Step2 extends Component {
   constructor(props) {
@@ -70,9 +70,9 @@ class Step2 extends Component {
           onChange={e => this.handleChange(e, "img")}
         />
         <p>
-          <Link to="/Step3" onclick={this.dispatchState}>
+          <Link to="/Step3">
           <button
-            // onClick={this.dispatchState}
+            onClick={this.dispatchState}
             className="dash_subheader_button"
           >
             Next Step
