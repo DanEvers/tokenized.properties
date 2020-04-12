@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Steps.css";
 import axios from 'axios'
+import store, { STEP4 } from "../../Redux/reducer";
 
 export class Step4 extends Component {
   constructor() {

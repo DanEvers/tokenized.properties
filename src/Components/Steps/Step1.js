@@ -5,7 +5,7 @@ import "./Steps.css";
 // import axios from "axios";
 import store from "../../Redux/store";
 import { STEP1 } from "../../Redux/reducer";
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 
 class Step1 extends Component {
   constructor(props) {

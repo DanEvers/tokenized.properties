@@ -5,7 +5,7 @@ import "./Steps.css";
 // import axios from 'axios'
 import store from "../../Redux/store";
 import { STEP2 } from "../../Redux/reducer";
-import {connect} from 'react-redux'
+// import {connect} from 'react-redux'
 
 class Step2 extends Component {
   constructor(props) {
@@ -43,7 +43,7 @@ class Step2 extends Component {
         img
       }
     });
-    // this.props.history.push("/Step3");
+    this.props.history.push("/Step3");
   };
 
   componentDidMount() {
@@ -82,7 +82,7 @@ class Step2 extends Component {
         <p>
           {/* <Link to="/Step1"> */}
           <button
-            onclick={this.props.history.push("/Step1")}
+            onclick={this.props.history.push("/Step2")}
             className="dash_subheader_button"
           >
             Back
